@@ -5,7 +5,7 @@
       initial +/-1 Verified vote.
     manager: independent
     trigger:
-      github:
+      myaevzuul:
         # Run this pipeline on new/changed pull requests
         - event: pull_request
           action:
@@ -22,7 +22,7 @@
           action: rerequested
           check: .*/check:.*
     start:
-      github:
+      myaevzuul:
         check: "in_progress"
         comment: true
         # It is recommended to use the checks API for consistency with
@@ -36,20 +36,20 @@
         # sections below.  You should choose one or the other
         # depending on project preferences.
         #
-        #status: 'pending'
+        status: "pending"
         #comment: true
     success:
-      github:
+      myaevzuul:
         check: "success"
         comment: true
-        #status: 'success'
+        status: "success"
     failure:
-      github:
+      myaevzuul:
         check: "failure"
         comment: true
-        #status: 'failure'
+        status: "failure"
     dequeue:
-      github:
+      myaevzuul:
         check: cancelled
         comment: true
 
@@ -70,7 +70,7 @@
       open: True
       current-patchset: True
     trigger:
-      github:
+      myaevzuul:
         - event: pull_request_review
           action: submitted
           state: approved
@@ -91,22 +91,22 @@
           label:
             - gate
     start:
-      github:
+      myaevzuul:
         check: "in_progress"
         comment: false
         #status: 'pending'
     success:
-      github:
+      myaevzuul:
         check: "success"
         comment: false
         #status: 'success'
         merge: true
     failure:
-      github:
+      myaevzuul:
         check: "failure"
         #status: 'failure'
         comment: false
     dequeue:
-      github:
+      myaevzuul:
         check: cancelled
         comment: false
