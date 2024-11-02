@@ -1,4 +1,3 @@
-# cleanup base job
 - hosts: all
   roles:
     - remove-build-sshkey
