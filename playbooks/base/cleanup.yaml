@@ -1,3 +1,4 @@
+# yamlint
 - hosts: all
   roles:
     - remove-build-sshkey
