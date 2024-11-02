@@ -24,7 +24,7 @@
     start:
       github:
         check: "in_progress"
-        comment: false
+        comment: true
         # It is recommended to use the checks API for consistency with
         # other common CI tools that integrate with Github.  Results
         # will appear on the "checks" tab of PR and changes.  There is
@@ -37,21 +37,21 @@
         # depending on project preferences.
         #
         #status: 'pending'
-        #comment: false
+        #comment: true
     success:
       github:
         check: "success"
-        comment: false
+        comment: true
         #status: 'success'
     failure:
       github:
         check: "failure"
-        comment: false
+        comment: true
         #status: 'failure'
     dequeue:
       github:
         check: cancelled
-        comment: false
+        comment: true
 
 - pipeline:
     name: gate
