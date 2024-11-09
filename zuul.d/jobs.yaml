@@ -5,3 +5,12 @@
       nodes:
         - name: ubuntu-jammy
           label: ubuntu-jammy
+
+- job:
+    name: install-bazel
+    parent: base
+    nodeset:
+      nodes:
+        - name: ubuntu-jammy
+          label: ubuntu-jammy
+    run: playbooks/bazel_install/install_bazel.yaml
