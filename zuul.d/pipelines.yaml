@@ -61,14 +61,15 @@
     manager: dependent
     post-review: True
     require:
-      review:
-        # Require an approval from user with write access (e.g. core-reviewer)
-        - permission: write
-          type: approved
-      # Require label
-      label: gate
-      open: True
-      current-patchset: True
+      myaevzuul:
+        review:
+          # Require an approval from user with write access (e.g. core-reviewer)
+          - permission: write
+            type: approved
+        # Require label
+        label: gate
+        open: True
+        current-patchset: True
     trigger:
       myaevzuul:
         - event: pull_request_review

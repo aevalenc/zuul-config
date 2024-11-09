@@ -6,10 +6,11 @@
       jobs: []
 
 - project:
-    name: zuul-config
+    name: aevalenc/zuul-config
     check:
       jobs:
         - noop
+        - install-bazel
     gate:
       jobs:
         - noop
