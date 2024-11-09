@@ -3,4 +3,4 @@
   roles:
     - generate-zuul-manifest
     - role: upload-logs
-      zuul_log_url: "http://129.152.26.72/:8000"
+      zuul_log_url: "http://129.152.26.72:8000"
