@@ -19,11 +19,6 @@
         - event: pull_request
           action: comment
           comment: (?i).*check\s*$
-        # When using the checks API to report results, failed runs
-        # will have a "re-run" button which emits this event.
-        # - event: check_run
-        #   action: rerequested
-        #   check: .*/check:.*
     start:
       myaevzuul:
         check: "in_progress"
@@ -39,18 +34,16 @@
         # sections below.  You should choose one or the other
         # depending on project preferences.
         #
-        status: "pending"
+        # status: "pending"
         #comment: true
     success:
       myaevzuul:
         check: "success"
         comment: true
-        status: "success"
     failure:
       myaevzuul:
         check: "failure"
         comment: true
-        status: "failure"
     dequeue:
       myaevzuul:
         check: cancelled
@@ -87,28 +80,22 @@
         - event: pull_request
           action: status
           status: ".*:success"
-        # - event: check_run
-        #   action: rerequested
-        #   check: .*/gate:.*
         - event: pull_request
           action: labeled
           label:
-            - gate
+            - merge
     start:
       myaevzuul:
         check: "in_progress"
         comment: true
-        #status: 'pending'
     success:
       myaevzuul:
         check: "success"
         comment: false
-        #status: 'success'
         merge: true
     failure:
       myaevzuul:
         check: "failure"
-        #status: 'failure'
         comment: false
     dequeue:
       myaevzuul:
