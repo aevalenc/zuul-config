@@ -6,7 +6,7 @@
     manager: independent
     require:
       myaevzuul:
-        label: check
+        label: zuul-check
     trigger:
       myaevzuul:
         # Run this pipeline on new/changed pull requests
@@ -18,7 +18,7 @@
         # Run in response to a pull request comment "recheck"
         - event: pull_request
           action: comment
-          comment: (?i)\s*check\s*$
+          comment: (?i).*check\s*$
         # When using the checks API to report results, failed runs
         # will have a "re-run" button which emits this event.
         # - event: check_run
@@ -80,7 +80,7 @@
           state: approved
         - event: pull_request
           action: comment
-          comment: (?i)^\s*gate\s*$
+          comment: (?i).*gate\s*$
         - event: pull_request_review
           action: dismissed
           state: request_changes
