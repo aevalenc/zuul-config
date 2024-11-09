@@ -4,6 +4,9 @@
       Newly uploaded patchsets enter this pipeline to receive an
       initial +/-1 Verified vote.
     manager: independent
+    require:
+      myaevzuul:
+        label: check
     trigger:
       myaevzuul:
         # Run this pipeline on new/changed pull requests
@@ -15,12 +18,12 @@
         # Run in response to a pull request comment "recheck"
         - event: pull_request
           action: comment
-          comment: (?i)^\s*recheck\s*$
+          comment: (?i)\s*check\s*$
         # When using the checks API to report results, failed runs
         # will have a "re-run" button which emits this event.
-        - event: check_run
-          action: rerequested
-          check: .*/check:.*
+        # - event: check_run
+        #   action: rerequested
+        #   check: .*/check:.*
     start:
       myaevzuul:
         check: "in_progress"
@@ -61,14 +64,15 @@
     manager: dependent
     post-review: True
     require:
-      review:
-        # Require an approval from user with write access (e.g. core-reviewer)
-        - permission: write
-          type: approved
-      # Require label
-      label: gate
-      open: True
-      current-patchset: True
+      myaevzuul:
+        # review:
+        #   # Require an approval from user with write access (e.g. core-reviewer)
+        #   - permission: write
+        #     type: approved
+        # Require label
+        label: merge
+        open: True
+        current-patchset: True
     trigger:
       myaevzuul:
         - event: pull_request_review
@@ -76,16 +80,16 @@
           state: approved
         - event: pull_request
           action: comment
-          comment: (?i)^\s*regate\s*$
+          comment: (?i)^\s*gate\s*$
         - event: pull_request_review
           action: dismissed
           state: request_changes
         - event: pull_request
           action: status
           status: ".*:success"
-        - event: check_run
-          action: rerequested
-          check: .*/gate:.*
+        # - event: check_run
+        #   action: rerequested
+        #   check: .*/gate:.*
         - event: pull_request
           action: labeled
           label:
@@ -93,7 +97,7 @@
     start:
       myaevzuul:
         check: "in_progress"
-        comment: false
+        comment: true
         #status: 'pending'
     success:
       myaevzuul:
